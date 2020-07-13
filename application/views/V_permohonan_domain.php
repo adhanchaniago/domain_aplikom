@@ -11,6 +11,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>SKPD</th>
@@ -19,42 +20,36 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
-                            <td>123</td>
-                            <td>Jamest</td>
-                            <td>4.0</td>
-                            <td>jateng.go.id</td>
-                            <td>2011/04/25</td>
-                            <td>
-                                <a href="<?php echo base_url() . 'C_tindakan_domain' ?>" class="btn btn-info btn-icon-split btn-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info-circle"></i>
-                                    </span>
-                                    <span class="text">Tindakan</span>
-                                </a>
+                        <?php $no = 1;
+                        foreach ($domain as $d) : ?>
+                            <tr>
+                                <td> <?php echo $no++; ?> </td>
+                                <td> <?php echo $d->nip; ?> </td>
+                                <td> <?php echo $d->nama; ?> </td>
+                                <td> <?php echo $d->skpd; ?> </td>
+                                <td> <?php echo $d->nama_domain; ?> </td>
+                                <td> <?php echo $d->log; ?> </td>
+                                <td>
+                                    <a href="<?php echo base_url() . 'C_tindakan_domain' ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="text">Tindakan</span>
+                                    </a>
 
-                                <a href="" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#modalHapus">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Hapus</span>
-                                </a>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>456</td>
-                            <td>Sward</td>
-                            <td>3.0</td>
-                            <td>undip.ac.id</td>
-                            <td>2011/05/25</td>
-                            <td>
-
-                            </td>
-
-                        </tr>
+                                    <a href="" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#modalHapus">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Hapus</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
+
                 </table>
             </div>
         </div>
