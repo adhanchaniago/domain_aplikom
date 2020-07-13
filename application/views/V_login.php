@@ -17,12 +17,21 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang !</h1>
                                     </div>
-                                    <form class="user">
+                                    <?php if ($this->session->flashdata('gagal_login')) : ?>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            NIP / Password salah !
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <form class="user" method="POST" action="<?= base_url('C_auth/'); ?>">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="email" placeholder="Masukan NIP..." name="email">
+                                            <input type="number" class="form-control form-control-user" id="nip" placeholder="Masukan NIP..." name="nip" autocomplete="false" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" placeholder="Masukan Password..." name="password">
+                                            <input type="password" class="form-control form-control-user" id="password" placeholder="Masukan Password..." name="password" required>
                                         </div>
                                         <div class="form-group">
                                         </div>
@@ -32,9 +41,9 @@
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="<?php echo base_url() . 'C_auth/register' ?>">Belum punya akun? Register!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

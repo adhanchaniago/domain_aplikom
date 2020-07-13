@@ -32,7 +32,7 @@
             <div class="modal-body">Anda yakin ingin keluar dari sistem ?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="<?= base_url('C_auth/logout'); ?>">Logout</a>
             </div>
         </div>
     </div>
