@@ -10,4 +10,8 @@ class C_permohonan_domain extends CI_Controller
         $this->load->view('V_permohonan_domain');
         $this->load->view('templates/footer');
     }
+
+    public function test()
+    {
+    }
 }
