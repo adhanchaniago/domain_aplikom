@@ -13,49 +13,53 @@
     </tr>
   </thead> -->
         <tbody>
-            <tr>
-                <th scope="row">NIP</th>
-                <td>123</td>
-            </tr>
-            <tr>
-                <th scope="row">Nama Lengkap</th>
-                <td>lorem</td>
-            </tr>
-            <tr>
-                <th scope="row">SKPD</th>
-                <td>4.0</td>
-            </tr>
-            <tr>
-                <th scope="row">Nama Domain</th>
-                <td>jatengprov.go.id</td>
-            </tr>
-            <tr>
-                <th scope="row">Email</th>
-                <td>a@mail.com</td>
-            </tr>
-            <tr>
-                <th scope="row">Tanggal</th>
-                <td>4/05/2020</td>
-            </tr>
-            <tr>
-                <th scope="row">Dokumen</th>
-                <td>Lorem, ipsum dolor.</td>
-            </tr>
+            <?php foreach ($detail as $d) : ?>
+                <tr>
+                    <th scope="row">NIP</th>
+                    <td> <?php echo $d['nip']; ?> </td>
+                </tr>
+                <tr>
+                    <th scope="row">Nama Lengkap</th>
+                    <td><?php echo $d['nama']; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">SKPD</th>
+                    <td><?php echo $d['skpd']; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Nama Domain</th>
+                    <td><?php echo $d['nama_domain']; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td><?php echo $d['email']; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Tanggal</th>
+                    <td><?php echo $d['log']; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Dokumen</th>
+                    <td><a href="<?= base_url(); ?>uploads/file/<?php echo $d['filename']; ?>"> <i class="far fa-file"></i> &nbsp;<?php echo $d['filename']; ?></a></td>
+                </tr>
+
+
         </tbody>
     </table>
-    <a href="#" class="btn btn-danger btn-icon-split btn-sm float-right">
+    <a href="<?= base_url(); ?>C_tindakan_domain/tolak/<?= $d['id_domain']; ?>" class="btn btn-danger btn-icon-split btn-sm float-right">
         <span class="icon text-white-50">
             <i class="fas fa-times"></i>
         </span>
         <span class="text">Tolak</span>
     </a>
     &nbsp;
-    <a href="#" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 10px;">
+    <a href="<?= base_url(); ?>C_tindakan_domain/terima/<?= $d['id_domain']; ?>" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 10px;">
         <span class="icon text-white-50">
             <i class="fas fa-check"></i>
         </span>
         <span class="text">Terima</span>
     </a>
+<?php endforeach; ?>
 
 </div>
 <!-- /.container-fluid -->

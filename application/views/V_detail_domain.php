@@ -13,38 +13,45 @@
     </tr>
   </thead> -->
          <tbody>
-             <tr>
-                 <th scope="row">NIP</th>
-                 <td>123</td>
-             </tr>
-             <tr>
-                 <th scope="row">Nama Lengkap</th>
-                 <td>lorem</td>
-             </tr>
-             <tr>
-                 <th scope="row">SKPD</th>
-                 <td>4.0</td>
-             </tr>
-             <tr>
-                 <th scope="row">Nama Domain</th>
-                 <td>jatengprov.go.id</td>
-             </tr>
-             <tr>
-                 <th scope="row">Email</th>
-                 <td>a@mail.com</td>
-             </tr>
-             <tr>
-                 <th scope="row">Tanggal</th>
-                 <td>4/05/2020</td>
-             </tr>
-             <tr>
-                 <th scope="row">Dokumen</th>
-                 <td>Lorem, ipsum dolor.</td>
-             </tr>
-             <tr>
-                 <th scope="row">Status</th>
-                 <td><span class="badge badge-success">Diterima</span></td>
-             </tr>
+             <?php foreach ($detail as $d) : ?>
+                 <tr>
+                     <th scope="row">NIP</th>
+                     <td> <?php echo $d['nip']; ?> </td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Nama Lengkap</th>
+                     <td><?php echo $d['nama']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">SKPD</th>
+                     <td><?php echo $d['skpd']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Nama Domain</th>
+                     <td><?php echo $d['nama_domain']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Email</th>
+                     <td><?php echo $d['email']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Tanggal</th>
+                     <td><?php echo $d['log']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Dokumen</th>
+                     <td><a href="<?= base_url(); ?>uploads/file/<?php echo $d['filename']; ?>"> <i class="far fa-file"></i> &nbsp;<?php echo $d['filename']; ?></a></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Status</th>
+                     <td> <?php if ($d['status'] == '1') {
+                                echo "<span class='badge badge-success'>Diterima</span>";
+                            } else {
+                                echo "<span class='badge badge-danger'>Ditolak</span>";
+                            }  ?>
+                     </td>
+                 </tr>
+             <?php endforeach; ?>
          </tbody>
      </table>
      <a href="<?php echo base_url() . 'C_list_domain' ?>" class="btn btn-primary btn-icon-split float-right">
