@@ -14,6 +14,16 @@
         </div>
     <?php endif; ?>
 
+    <?php if ($this->session->flashdata('gagal_upload_file')) : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Upload file gagal !
+            <strong> <?php echo $this->session->flashdata('gagal_upload_file'); ?> </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -55,12 +65,16 @@
                                 </a>
 
                                 <?php if ($d->status == '1') : ?>
-                                    <a href='#' class='btn btn-warning btn-icon-split btn-sm' data-toggle='modal' data-target='#modalUpload_<?= $d->id_domain; ?>'>
-                                        <span class='icon text-white-50'>
-                                            <i class='fas fa-paperclip'></i>
-                                        </span>
-                                        <span class='text'>Upload</span>
-                                    </a>
+                                    <?php if ($d->file_domain == '') : ?>
+                                        <a href='#' class='btn btn-warning btn-icon-split btn-sm' data-toggle='modal' data-target='#modalUpload_<?= $d->id_domain; ?>'>
+                                            <span class='icon text-white-50'>
+                                                <i class='fas fa-paperclip'></i>
+                                            </span>
+                                            <span class='text'>Upload</span>
+                                        </a>
+                                    <?php else : ?>
+                                        <span class='badge badge-success ban'><i class="fas fa-clipboard-check"></i> File terkirim</span>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -87,17 +101,17 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url(); ?>C_emailsender/send/<?= $d->email; ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url(); ?>C_emailsender/send/<?= $d->id_domain; ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="input-group mb-3">
-                                <input type="file" id="file" name="file">
+                                <input type="file" id="file" name="file" required>
                             </div>
-                            <div class="input-group">
+                            <!-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Pesan</span>
                                 </div>
-                                <textarea class="form-control" aria-label="With textarea" id="pesan" name="pesan"> Selamat pengajuan domain anda diterima !</textarea>
-                            </div>
+                                <textarea class="form-control" aria-label="With textarea" id="pesan" name="pesan" placeholder="Silahkan isikan keterangan tambahan..."> </textarea>
+                            </div> -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

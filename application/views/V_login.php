@@ -1,4 +1,4 @@
-<body class="bg-gradient-success">
+<body class="bg-gradient-secondary">
 
     <div class="container">
 
