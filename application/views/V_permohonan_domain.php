@@ -38,11 +38,14 @@
                                 <td> <?php echo $no++; ?> </td>
                                 <td> <?php echo $d->nip; ?> </td>
                                 <td> <?php echo $d->nama; ?> </td>
-                                <td> <?php echo $d->skpd; ?> </td>
+                                <td> <?php echo $d->nama_skpd; ?> </td>
                                 <td> <?php echo $d->nama_domain; ?> </td>
-                                <td> <?php echo $d->log; ?> </td>
+                                <td width="100"> <?php $tanggal = explode(" ", $d->log_masuk) ;
+                                        echo $tanggal[0];
+                                    ?> 
+                                </td>
                                 <td>
-                                    <a href="<?= base_url(); ?>C_tindakan_domain/detail/<?= $d->id_domain; ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url(); ?>C_permohonan_domain/tindakan/<?= $d->id_domain; ?>" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info-circle"></i>
                                         </span>
@@ -84,7 +87,7 @@
                     <div class="modal-body">Anda yakin ingin menghapus ini ?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-danger" href="<?= base_url(); ?>C_hapus_domain/hapus/<?= $d->id_domain; ?>">Hapus</a>
+                        <a class="btn btn-danger" href="<?= base_url(); ?>C_permohonan_domain/hapus/<?= $d->id_domain; ?>">Hapus</a>
                     </div>
                     <!-- <?php echo base_url() . 'C_hapus_domain/hapus' / $d->id_domain ?> -->
                 </div>
@@ -92,4 +95,3 @@
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
-</div>

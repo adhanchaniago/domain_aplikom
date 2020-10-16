@@ -4,10 +4,30 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Status Permohonan Domain</h1>
 
-    <?php if ($this->session->flashdata('flash')) : ?>
+     <?php if (($this->session->flashdata('email')) && ($this->session->flashdata('nama_domain'))) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data pemohon domain
-            <strong> <?php echo $this->session->flashdata('flash'); ?> </strong>
+            File Permohonan Domain dengan nama <strong> <?php echo $this->session->flashdata('nama_domain'); ?> </strong>  berhasil dikirim ke
+            <strong> <?php echo $this->session->flashdata('email'); ?> </strong> !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('terima')) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data domain dengan nama 
+            <strong> <?php echo $this->session->flashdata('terima'); ?> </strong> Diterima !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('tolak')) : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Data domain dengan nama  
+            <strong> <?php echo $this->session->flashdata('tolak'); ?> </strong> Ditolak !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -37,10 +57,11 @@
                             <th>SKPD</th>
                             <th>Nama Domain</th>
                             <th>Status</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Diterima/Ditolak</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
+                    <tbody>
                     <?php $no = 1;
                     foreach ($domain as $d) : ?>
                         <tr>
@@ -55,9 +76,17 @@
                                         echo "<span class='badge badge-danger'>Ditolak</span>";
                                     }  ?> </td>
 
-                            <td> <?php echo $d->log; ?> </td>
+                            <td> 
+                                <?php if ($d->status == '1') {
+                                        $tanggal = explode(" ", $d->log_terima) ;
+                                        echo $tanggal[0];
+                                    } else {
+                                        $tanggal = explode(" ", $d->log_tolak) ;
+                                        echo $tanggal[0];
+                                    }  ?> 
+                            </td>
                             <td>
-                                <a href="<?= base_url(); ?>C_detail_domain/detail/<?= $d->id_domain; ?>" class="btn btn-info btn-icon-split btn-sm">
+                                <a href="<?= base_url(); ?>C_list_domain/detail/<?= $d->id_domain; ?>" class="btn btn-info btn-icon-split btn-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-info-circle"></i>
                                     </span>
@@ -91,7 +120,10 @@
 
 <!-- Modal -->
 <?php if ($domain) : ?>
-    <?php foreach ($domain as $d) : ?>
+    <?php foreach ($domain as $d) :
+    $this->session->set_userdata('email', $d->email);
+        $this->session->set_userdata('nama_domain', $d->nama_domain);
+         ?>
         <div class="modal fade" id="modalUpload_<?= $d->id_domain; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -101,7 +133,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url(); ?>C_emailsender/send/<?= $d->id_domain; ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url(); ?>C_list_domain/send/<?= $d->id_domain; ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="input-group mb-3">
                                 <input type="file" id="file" name="file" required>

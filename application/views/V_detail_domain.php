@@ -35,8 +35,25 @@
                      <td><?php echo $d['email']; ?></td>
                  </tr>
                  <tr>
-                     <th scope="row">Tanggal</th>
-                     <td><?php echo $d['log']; ?></td>
+                     <th scope="row">Tanggal Masuk</th>
+                     <td colspan="2"><?php echo $d['log_masuk']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">
+                        Tanggal <?php if ($d['status'] == '1') {
+                            echo "Diterima";
+                        } else{
+                            echo "Ditolak";
+                        } ?>
+                     </th>
+                     <td colspan="2">
+                        <?php if ($d['status'] == '1') {
+                            echo $d['log_terima'];
+                        } else{
+                            echo $d['log_tolak'];
+                        } ?>
+                         
+                     </td>
                  </tr>
                  <tr>
                      <th scope="row">Dokumen</th>

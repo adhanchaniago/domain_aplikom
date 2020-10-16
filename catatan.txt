@@ -1,0 +1,8 @@
+folder domain
+	fontend permohonan domain dan rekomtek aplikasi yang dibuat otniel, dengan beberapa penyesuaian
+	terhadap database yang baru
+foler domain_aplikom
+	backend untuk admin
+
+database :
+	- token pada skpd masih berupa no (berurutan 1-48)

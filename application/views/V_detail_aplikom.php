@@ -4,68 +4,77 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Detail Data Pemohon</h1>
     <table class="table table-striped table-sm">
-        <!-- <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead> -->
+
         <tbody>
-            <tr>
-                <th scope="row">NIP</th>
-                <td>123</td>
-            </tr>
-            <tr>
-                <th scope="row">Nama Lengkap</th>
-                <td>lorem</td>
-            </tr>
-            <tr>
-                <th scope="row">SKPD</th>
-                <td>4.0</td>
-            </tr>
-            <tr>
-                <th scope="row">Usulan Aplikasi</th>
-                <td>Sikunang Tanah</td>
-            </tr>
-            <tr>
-                <th scope="row">Email</th>
-                <td>a@mail.com</td>
-            </tr>
-            <tr>
-                <th scope="row">Biaya</th>
-                <td>100.000</td>
-            </tr>
-            <tr>
-                <th scope="row">Pengembangan</th>
-                <td>Lorem ipsum dolor sit amet.</td>
-            </tr>
-            <tr>
-                <th scope="row">Tujuan</th>
-                <td>Lorem ipsum dolor sit amet.</td>
-            <tr>
-                <th scope="row">Email</th>
-                <td>a@mail.com</td>
-            </tr>Lorem ipsum dolor sit amet.</td>
-            </tr>
-            <tr>
-                <th scope="row">Lingkup</th>
-                <td>Lorem ipsum dolor sit amet.</td>
-            </tr>
-            <tr>
-                <th scope="row">Tanggal</th>
-                <td>4/05/2020</td>
-            </tr>
-            <tr>
-                <th scope="row">Dokumen</th>
-                <td>Lorem, ipsum dolor.</td>
-            </tr>
-            <tr>
-                <th scope="row">Status</th>
-                <td><span class="badge badge-success">Diterima</span></td>
-            </tr>
-        </tbody>
+             <?php foreach ($detail as $d) : ?>
+                 <tr>
+                     <th scope="row">NIP</th>
+                     <td colspan="2"> <?php echo $d['nip']; ?> </td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Nama Lengkap</th>
+                     <td colspan="2"><?php echo $d['nama']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Kode SKPD</th>
+                     <td colspan="2"><?php echo $d['skpd']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Nama SKPD</th>
+                     <td colspan="2"><?php echo $d['nama_skpd']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Usulan Aplikasi</th>
+                     <td colspan="2"><?php echo $d['usulan']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Email</th>
+                     <td colspan="2"><?php echo $d['email']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Biaya</th>
+                     <td>Rp<?= $rupiah; ?>
+                     </td>
+                     <td style="text-align: center;">Terbilang : <i><?= $terbilang; ?> Rupiah</i></span>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <th scope="row">Tanggal Masuk</th>
+                     <td colspan="2"><?php echo $d['log_masuk']; ?></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">
+                        Tanggal <?php if ($d['status'] == '1') {
+                            echo "Diterima";
+                        } else{
+                            echo "Ditolak";
+                        } ?>
+                     </th>
+                     <td colspan="2">
+                        <?php if ($d['status'] == '1') {
+                            echo $d['log_terima'];
+                        } else{
+                            echo $d['log_tolak'];
+                        } ?>
+                         
+                     </td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Dokumen</th>
+                     <td colspan="2"><a href="<?= base_url(); ?>uploads/file/<?php echo $d['filename']; ?>"> <i class="far fa-file"></i> &nbsp;<?php echo $d['filename']; ?></a></td>
+                 </tr>
+                 <tr>
+                     <th scope="row">Status</th>
+                     <td colspan="2"> <?php if ($d['status'] == '1') {
+                                echo "<span class='badge badge-success'>Diterima</span>";
+                            } else {
+                                echo "<span class='badge badge-danger'>Ditolak</span>";
+                            }  ?>
+                     </td>
+                 </tr>
+             <?php endforeach; ?>
+         </tbody>
     </table>
     <a href="<?php echo base_url() . 'C_list_aplikom' ?>" class="btn btn-primary btn-icon-split float-right">
         <span class="icon text-white-50">

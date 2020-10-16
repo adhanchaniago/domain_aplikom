@@ -1,0 +1,16 @@
+Perubahan pada database:
+1 Tabel domain dan rekomtek_app:
+	- field log ->drop
+	- field nama_skpd -> drop
+	- insert field file_domain & file_rekomtek untuk menyimpan fila yang diupload setelah permohonan
+	  diterima
+2 Alter Table domain_log dan rekomtek_app_log
+	- kedua tabel tersebut berisi data id domain/rekomtek_app, log_masuk (datetime), 
+	  log_terima (datetime),log_tolak (datetime), dan status untuk setiap permohonan yang masuk
+	- pengisian tabel menggunakan trigger insert_log_domain dan insert_log_rekomtek_app
+
+===========================================================================================================
+Perubahan pada domain (otniel) :
+1. Home.php 
+	- penghapusan $insert['log'] pada save_registration() -> untuk penyesuaian pada database baru
+	- penghapusan $insert['log'] pada save_rekomtek() -> untuk penyesuaian pada database baru

@@ -22,3 +22,4 @@
     <link href="<?php echo base_url() . 'vendor/vendor/datatables/dataTables.bootstrap4.min.css' ?>" rel="stylesheet">
 
 </head>
+

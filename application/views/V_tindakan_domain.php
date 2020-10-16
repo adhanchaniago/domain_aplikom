@@ -13,7 +13,10 @@
     </tr>
   </thead> -->
         <tbody>
-            <?php foreach ($detail as $d) : ?>
+            <?php foreach ($detail as $d) :
+             $this->session->set_userdata('domain', $d['nama_domain']);
+             $this->session->set_userdata('file_name', $d['filename']);
+              ?>
                 <tr>
                     <th scope="row">NIP</th>
                     <td> <?php echo $d['nip']; ?> </td>
@@ -22,8 +25,15 @@
                     <th scope="row">Nama Lengkap</th>
                     <td><?php echo $d['nama']; ?></td>
                 </tr>
+
                 <tr>
-                    <th scope="row">SKPD</th>
+                    <th scope="row">Nama SKPD</th>
+                    <td><?php echo $d['nama_skpd']; ?></td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">Kode SKPD</th>
                     <td><?php echo $d['skpd']; ?></td>
                 </tr>
                 <tr>
@@ -36,7 +46,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Tanggal</th>
-                    <td><?php echo $d['log']; ?></td>
+                    <td><?php echo $d['log_masuk']; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Dokumen</th>
@@ -46,14 +56,14 @@
 
         </tbody>
     </table>
-    <a href="<?= base_url(); ?>C_tindakan_domain/tolak/<?= $d['id_domain']; ?>" class="btn btn-danger btn-icon-split btn-sm float-right">
+    <a href="<?= base_url(); ?>C_permohonan_domain/tolak/<?= $d['id_domain']; ?>" class="btn btn-danger btn-icon-split btn-sm float-right">
         <span class="icon text-white-50">
             <i class="fas fa-times"></i>
         </span>
         <span class="text">Tolak</span>
     </a>
     &nbsp;
-    <a href="<?= base_url(); ?>C_tindakan_domain/terima/<?= $d['id_domain']; ?>" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 10px;">
+    <a href="<?= base_url(); ?>C_permohonan_domain/terima/<?= $d['id_domain']; ?>" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 10px;">
         <span class="icon text-white-50">
             <i class="fas fa-check"></i>
         </span>

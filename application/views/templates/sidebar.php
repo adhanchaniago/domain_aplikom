@@ -64,21 +64,6 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Lainnya
-            </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url() . 'C_statistik' ?>">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Statistik</span></a>
-            </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -130,3 +115,5 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+                
